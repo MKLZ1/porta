@@ -1,0 +1,17 @@
+.carousel-container {
+  padding: 5%;
+    /* perspective: 1000px; */
+    width: 480px;
+    height: 244px;
+    position: relative;
+  }
+  
+  .carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    /* transform-style: preserve-3d; */
+  }
+ 

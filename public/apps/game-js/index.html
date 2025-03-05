@@ -1,0 +1,160 @@
+<html>
+  <head>
+    <title>Raycasting</title>
+    <!-- <base href="/apps/game-js/" /> -->
+
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, target-densitydpi=device-dpi" -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <link rel="stylesheet" href="css/estilos.css" />
+    <link rel="stylesheet" href="css/keyboard.css" />
+  </head>
+
+  <body onload="configurarCanvas();comenzar()">
+    <!-- <div class="div-principal"> -->
+    <!-- <h1 class="titulo">AMOUNG US CHAFA 2.0</h1> -->
+    <canvas id="canvas" onclick="tocoCanvas();"> </canvas>
+    <div class="container">
+      <div class="keyboard-container">
+        <div id="up" class="key key-up">
+          <div class="arrow arrow-up"></div>
+        </div>
+        <div id="left" class="key key-left">
+          <div class="arrow arrow-left"></div>
+        </div>
+        <div id="down" class="key key-down">
+          <div class="arrow arrow-down"></div>
+        </div>
+        <div id="right" class="key key-right">
+          <div class="arrow arrow-right"></div>
+        </div>
+      </div>
+
+      <div class="letter-keys">
+        <div id="x" class="letter-key key-x">X</div>
+        <div id="k" class="letter-key key-k">K</div>
+        <div id="l" class="letter-key key-l">L</div>
+      </div>
+    </div>
+
+    <script>
+      const keyMap = {
+        ArrowUp: document.getElementById("up"),
+        ArrowLeft: document.getElementById("left"),
+        ArrowDown: document.getElementById("down"),
+        ArrowRight: document.getElementById("right"),
+        x: document.getElementById("x"),
+        k: document.getElementById("k"),
+        l: document.getElementById("l"),
+      };
+
+      // Evento de tecla presionada
+      document.addEventListener("keydown", function (event) {
+        const key = keyMap[event.key.toLocaleLowerCase()];
+        if (key) {
+          key.classList.add("pressed");
+        }
+      });
+
+      // Evento de tecla soltada
+      document.addEventListener("keyup", function (event) {
+        const key = keyMap[event.key.toLocaleLowerCase()];
+        if (key) {
+          key.classList.remove("pressed");
+        }
+      });
+    </script>
+    <!--Animacion-->
+    <script src="js/Animacion/Animador.js"></script>
+    <script src="js/Animacion/GestorAnimadores.js"></script>
+    <script src="js/Animacion/GestorFotogramas.js"></script>
+    <script src="js/Animacion/HojaSprites.js"></script>
+    <script src="js/Animacion/Sprite.js"></script>
+    <script src="js/Animacion/Temporizador.js"></script>
+    <!--BusquedaIA-->
+    <script src="js/BusquedaIA/Bacteria.js"></script>
+    <script src="js/BusquedaIA/BloqueT.js"></script>
+    <script src="js/BusquedaIA/BuscadorRuta.js"></script>
+    <script src="js/BusquedaIA/CapaParasito.js"></script>
+    <script src="js/BusquedaIA/CruzBacteria.js"></script>
+    <script src="js/BusquedaIA/GestorLineaBacteria.js"></script>
+    <script src="js/BusquedaIA/LineaBacterias.js"></script>
+    <script src="js/BusquedaIA/MapaBacteria.js"></script>
+    <script src="js/BusquedaIA/MapaTetris.js"></script>
+    <script src="js/BusquedaIA/MecanismoMovimiento.js"></script>
+    <script src="js/BusquedaIA/Parasito.js"></script>
+    <script src="js/BusquedaIA/TablaBacteria.js"></script>
+
+    <!--Extra-->
+    <script src="js/Extra/CargadorLista.js"></script>
+    <script src="js/Extra/Direccion.js"></script>
+    <script src="js/Extra/EcuacionLineal.js"></script>
+    <script src="js/Extra/Linea.js"></script>
+    <script src="js/Extra/OperLineas.js"></script>
+    <script src="js/Extra/Point.js"></script>
+    <script src="js/Extra/Poligono.js"></script>
+    <script src="js/Extra/Rectangulo.js"></script>
+    <script src="js/Extra/RectanguloHelice.js"></script>
+    <!--InterfazUsuario-->
+    <script src="js/InterfazUsuario/ConfigMovil.js"></script>
+    <script src="js/InterfazUsuario/Teclado.js"></script>
+    <!--Mapa-->
+    <script src="js/Mapa/CamaraMapa.js"></script>
+    <script src="js/Mapa/CapaSprites.js"></script>
+    <script src="js/Mapa/DatosTiled.js"></script>
+    <script src="js/Mapa/GeneradorSombra.js"></script>
+    <script src="js/Mapa/GestorCriaturas.js"></script>
+    <script src="js/Mapa/Mapa.js"></script>
+    <script src="js/Mapa/ObjetoDibujo.js"></script>
+    <script src="js/Mapa/PuntoEsquinaRY.js"></script>
+    <script src="js/Mapa/RayoSMB.js"></script>
+    <script src="js/Mapa/RayoEsquinaSMB.js"></script>
+    <script src="js/Mapa/RayoNormalSMB.js"></script>
+    <script src="js/Mapa/RegistroEnemigos.js"></script>
+    <!--Personaje-->
+    <!--Base-->
+    <script src="js/Personaje/Arma/Rifle_mn.js"></script>
+
+    <script src="js/Personaje/Base/Ente.js"></script>
+    <script src="js/Personaje/Base/Criatura.js"></script>
+    <script src="js/Personaje/Base/Dependiente.js"></script>
+    <script src="js/Personaje/Base/Transformacion.js"></script>
+    <script src="js/Personaje/Base/Transicion.js"></script>
+
+    <script src="js/Personaje/Base/TransPersonaje.js"></script>
+    <script src="js/Personaje/Base/EstadoInstantaneo.js"></script>
+    <script src="js/Personaje/Base/EstadoJugador.js"></script>
+
+    <!--KR_NJ-->
+    <script src="js/Personaje/KR_NJ/CondicionesKoroNJ.js"></script>
+    <script src="js/Personaje/KR_NJ/KR_NJ.js"></script>
+    <script src="js/Personaje/KR_NJ/Transformacion1KR.js"></script>
+    <script src="js/Personaje/KR_NJ/Transformacion2KR.js"></script>
+
+    <!--Fast-->
+    <script src="js/Personaje/Fast/Fast.js"></script>
+    <script src="js/Personaje/Fast/Transformacion1Fast.js"></script>
+
+    <!--Player-->
+    <script src="js/Personaje/Player/Player.js"></script>
+    <script src="js/Personaje/Player/Transformacion1PY.js"></script>
+    <script src="js/Personaje/Tripulante/CondicionesTripulante.js"></script>
+    <script src="js/Personaje/Tripulante/Transformacion1TRP.js"></script>
+    <script src="js/Personaje/Tripulante/Tripulante.js"></script>
+
+    <!--Personaje-->
+    <script src="js/Personaje/GestorEstadosJugador.js"></script>
+    <script src="js/Personaje/TransEnlaze.js"></script>
+    <script src="js/Personaje/TransicionTrans.js"></script>
+    <!--Principal-->
+    <script src="js/FuncionesMovil.js"></script>
+    <script src="js/FuncionesLogica.js"></script>
+    <script src="js/CargarAnimaciones.js"></script>
+    <script src="js/CargarHojasSprites.js"></script>
+    <script src="js/Principal.js"></script>
+    <script src="js/laser.js"></script>
+  </body>
+</html>
