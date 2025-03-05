@@ -1,0 +1,156 @@
+<html>
+  <head>
+    <title>Raycasting</title>
+
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, target-densitydpi=device-dpi" -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <link rel="stylesheet" href="css/estilos.css" />
+    <link rel="stylesheet" href="css/keyboard.css" />
+  </head>
+
+  <body onload="configurarCanvas();comenzar()">
+    <canvas id="canvas" onclick="tocoCanvas();"> </canvas>
+    <div class="container">
+      <div class="keyboard-container">
+        <div id="w" class="letter-key key-w">W</div>
+
+        <div id="a" class="letter-key key-a">A</div>
+
+        <div id="s" class="letter-key key-s">S</div>
+
+        <div id="d" class="letter-key key-d">D</div>
+      </div>
+
+      <div id="click" class="key-click">Click</div>
+    </div>
+
+    <script>
+      const keyMap = {
+        a: document.getElementById("a"),
+        s: document.getElementById("s"),
+        d: document.getElementById("d"),
+        w: document.getElementById("w"),
+        click: document.getElementById("click"),
+      };
+
+      // Evento de tecla presionada
+      document.addEventListener("keydown", function (event) {
+        const key = keyMap[event.key.toLocaleLowerCase()];
+        if (key) {
+          key.classList.add("pressed");
+        }
+      });
+
+      // Evento de tecla soltada
+      document.addEventListener("keyup", function (event) {
+        const key = keyMap[event.key];
+        if (key) {
+          key.classList.remove("pressed");
+        }
+      });
+      document.addEventListener("mousedown", function (event) {
+        keyMap["click"].classList.add("pressed");
+      });
+      document.addEventListener("mouseup", function (event) {
+        keyMap["click"].classList.remove("pressed");
+      });
+    </script>
+    <script src="js/Fisica.js"></script>
+
+    <!--Animacion-->
+    <script src="js/Animacion/Animador.js"></script>
+    <script src="js/Animacion/GestorAnimadores.js"></script>
+    <script src="js/Animacion/GestorFotogramas.js"></script>
+    <script src="js/Animacion/HojaSprites.js"></script>
+    <script src="js/Animacion/Sprite.js"></script>
+    <script src="js/Animacion/Temporizador.js"></script>
+    <!--BusquedaIA-->
+    <script src="js/BusquedaIA/Bacteria.js"></script>
+    <script src="js/BusquedaIA/BloqueT.js"></script>
+    <script src="js/BusquedaIA/BuscadorRuta.js"></script>
+    <script src="js/BusquedaIA/CapaParasito.js"></script>
+    <script src="js/BusquedaIA/CruzBacteria.js"></script>
+    <script src="js/BusquedaIA/GestorLineaBacteria.js"></script>
+    <script src="js/BusquedaIA/LineaBacterias.js"></script>
+    <script src="js/BusquedaIA/MapaBacteria.js"></script>
+    <script src="js/BusquedaIA/MapaTetris.js"></script>
+    <script src="js/BusquedaIA/MecanismoMovimiento.js"></script>
+    <script src="js/BusquedaIA/Parasito.js"></script>
+    <script src="js/BusquedaIA/TablaBacteria.js"></script>
+
+    <!--Extra-->
+    <script src="js/Extra/CargadorLista.js"></script>
+    <script src="js/Extra/Direccion.js"></script>
+    <script src="js/Extra/EcuacionLineal.js"></script>
+    <script src="js/Extra/Linea.js"></script>
+    <script src="js/Extra/OperLineas.js"></script>
+    <script src="js/Extra/Point.js"></script>
+    <script src="js/Extra/Poligono.js"></script>
+    <script src="js/Extra/Rectangulo.js"></script>
+    <script src="js/Extra/RectanguloHelice.js"></script>
+    <!--InterfazUsuario-->
+    <script src="js/InterfazUsuario/ConfigMovil.js"></script>
+    <script src="js/InterfazUsuario/Teclado.js"></script>
+    <!--Mapa-->
+    <script src="js/Mapa/CamaraMapa.js"></script>
+    <script src="js/Mapa/CapaSprites.js"></script>
+    <script src="js/Mapa/DatosTiled.js"></script>
+    <script src="js/Mapa/GeneradorSombra.js"></script>
+    <script src="js/Mapa/GestorCriaturas.js"></script>
+    <script src="js/Mapa/Mapa.js"></script>
+    <script src="js/Mapa/ObjetoDibujo.js"></script>
+    <script src="js/Mapa/PuntoEsquinaRY.js"></script>
+    <script src="js/Mapa/RayoSMB.js"></script>
+    <script src="js/Mapa/RayoEsquinaSMB.js"></script>
+    <script src="js/Mapa/RayoNormalSMB.js"></script>
+    <script src="js/Mapa/RegistroEnemigos.js"></script>
+    <script src="js/Mapa/GestorObjetosDibujo.js"></script>
+    <!--Personaje-->
+    <!--Base-->
+    <script src="js/Personaje/Arma/Rifle_mn.js"></script>
+
+    <script src="js/Personaje/Base/Ente.js"></script>
+    <script src="js/Personaje/Base/Criatura.js"></script>
+    <script src="js/Personaje/Base/Dependiente.js"></script>
+    <script src="js/Personaje/Base/Transformacion.js"></script>
+    <script src="js/Personaje/Base/Transicion.js"></script>
+
+    <script src="js/Personaje/Base/TransPersonaje.js"></script>
+    <script src="js/Personaje/Base/EstadoInstantaneo.js"></script>
+    <script src="js/Personaje/Base/EstadoJugador.js"></script>
+    <!--HORO-->
+    <script src="js/Personaje/Horo/Horo.js"></script>
+    <!--KR_NJ-->
+    <script src="js/Personaje/KR_NJ/CondicionesKoroNJ.js"></script>
+    <script src="js/Personaje/KR_NJ/KR_NJ.js"></script>
+    <script src="js/Personaje/KR_NJ/Transformacion1KR.js"></script>
+    <script src="js/Personaje/KR_NJ/Transformacion2KR.js"></script>
+
+    <!--Fast-->
+    <script src="js/Personaje/Fast/Fast.js"></script>
+    <script src="js/Personaje/Fast/Transformacion1Fast.js"></script>
+
+    <!--Player-->
+    <script src="js/Personaje/Player/Player.js"></script>
+    <script src="js/Personaje/Player/Transformacion1PY.js"></script>
+    <script src="js/Personaje/Tripulante/CondicionesTripulante.js"></script>
+    <script src="js/Personaje/Tripulante/Transformacion1TRP.js"></script>
+    <script src="js/Personaje/Tripulante/Tripulante.js"></script>
+
+    <!--Personaje-->
+    <script src="js/Personaje/GestorEstadosJugador.js"></script>
+    <script src="js/Personaje/TransEnlaze.js"></script>
+    <script src="js/Personaje/TransicionTrans.js"></script>
+    <!--Principal-->
+    <script src="js/FuncionesMovil.js"></script>
+    <script src="js/FuncionesLogica.js"></script>
+    <script src="js/CargarAnimaciones.js"></script>
+    <script src="js/CargarHojasSprites.js"></script>
+    <script src="js/Principal.js"></script>
+    <script src="js/laser.js"></script>
+  </body>
+</html>

@@ -1,0 +1,109 @@
+:root {
+    --tecla-size: 50px;              
+    --animation-scale: 0.9;        
+    --arrow-size-ratio: 0.15;        
+    --font-size-ratio: 0.33;        
+    --animation-duration: 0.1s;     
+}
+
+.container {
+    padding: 20px;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+}
+
+.keyboard-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
+    width: calc(var(--tecla-size) * 3 + 20px);
+}
+.key-click {
+    margin-left: 10px;
+    width: 100px;
+    height: var(--tecla-size);
+    background-color: #f0f0f0;
+    border: 5px outset #ffffff;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+    font-weight: bold;
+    transition: transform var(--animation-duration) ease;
+}
+.key {
+    width: var(--tecla-size);
+    height: var(--tecla-size);
+    background-color: #f0f0f0;
+    border: 5px outset #ffffff;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+    transition: transform var(--animation-duration) ease;
+}
+
+.key.pressed,.key-click.pressed {
+    transform: scale(var(--animation-scale));
+    border-style: inset;
+    background-color: #e0e0e0;
+}
+
+.key-w {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.key-a {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.key-s {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.key-d {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+
+
+
+.letter-key {
+    width: var(--tecla-size);
+    height: var(--tecla-size);
+    background-color: #f0f0f0;
+    border: 5px outset #ffffff;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+    font-size: calc(var(--tecla-size) * var(--font-size-ratio));
+    font-weight: bold;
+    color: #333;
+    transition: transform var(--animation-duration) ease;
+}
+
+.letter-key.pressed {
+    transform: scale(var(--animation-scale));
+    border-style: inset;
+    background-color: #e0e0e0;
+}
